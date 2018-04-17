@@ -97,8 +97,8 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
         <input type='text' onChange={this.setLength} value={this.state.username} />
-         <Validation
-          userLength={this.state.username.length}
+        return <Validation
+          username={this.state.username}
         />
       </div>
     );
