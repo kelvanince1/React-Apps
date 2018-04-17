@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './App.css';
-
 const Char = (props) => {
   const style = {
     display: 'inline-block',
