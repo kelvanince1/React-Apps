@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import Validation from './Validation';
 
 class App extends Component {
   state = {
@@ -11,7 +12,7 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    name: ''
+    username: ''
   };
 
   nameChangedHandler = (event, id) => {
@@ -56,7 +57,7 @@ class App extends Component {
 
   setLength = (event) => {
     this.setState({
-      name: event.target.value
+      username: event.target.value
     })
   }
 
@@ -95,8 +96,10 @@ class App extends Component {
           style={style}
           onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
-        <input type='text' onChange={this.setLength} value={this.state.name} />
-        <p>{this.state.name.length}</p>
+        <input type='text' onChange={this.setLength} value={this.state.username} />
+         <Validation
+          userLength={this.state.username.length}
+        />
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
