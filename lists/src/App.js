@@ -10,7 +10,8 @@ class App extends Component {
       { id: '252', name: 'Stephanie', age: 26 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: false,
+    name: ''
   };
 
   nameChangedHandler = (event, id) => {
@@ -53,6 +54,12 @@ class App extends Component {
     });
   };
 
+  setLength = (event) => {
+    this.setState({
+      name: event.target.value
+    })
+  }
+
   render () {
     const style = {
       backgroundColor: 'white',
@@ -88,6 +95,8 @@ class App extends Component {
           style={style}
           onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
+        <input type='text' onChange={this.setLength} value={this.state.name} />
+        <p>{this.state.name.length}</p>
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
