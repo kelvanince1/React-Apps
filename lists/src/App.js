@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+
 import './App.css';
 import Person from './Person/Person';
 import Validation from './Validation';
+import Char from './Char';
 
 class App extends Component {
   state = {
@@ -48,6 +50,17 @@ class App extends Component {
     })
   }
 
+  deleteUsernameHandler = (index) => {
+    const text = this.state.username.split('');
+    // const users = [...this.state.username];
+    text.splice(index, 1);
+    const updatedText = text.join('');
+
+    this.setState({
+      username: updatedText
+    })
+  }
+
   togglePersonsHandler = () => {
     const doesShow = this.state.showPersons;
     this.setState({
@@ -62,6 +75,14 @@ class App extends Component {
   }
 
   render () {
+    const charList = this.state.username.split('').map((char, index) => {
+        return <Char
+          character={char}
+          key={index}
+          clicked={() => this.deleteUsernameHandler(index)}
+          />
+    });
+
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
@@ -97,9 +118,12 @@ class App extends Component {
           onClick={this.togglePersonsHandler}>Switch Name</button>
         {persons}
         <input type='text' onChange={this.setLength} value={this.state.username} />
-        return <Validation
+
+        <Validation
           username={this.state.username}
         />
+
+        {charList}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
