@@ -26,11 +26,28 @@ class App extends Component {
   };
 
   componentWillMount() {
-    console.log('[App.js] Inside component Will Mount')
+    console.log('[App.js] Inside component Will Mount');
   }
 
   componentDidMount() {
-    console.log('[App.js] Inside component Did Mount')
+    console.log('[App.js] Inside component Did Mount');
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('[UPDATE App.js] Inside component Will Receive Props', nextProps);
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[UPDATE App.js] Inside should Component Update', nextProps, nextState);
+    return nextState.username != this.state.username;
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    console.log('UPDATE App.js] Inside component Will Update');
+  }
+
+  componentDidUpdate() {
+    console.log('UPDATE App.js] Inside component Did Update');
   }
 
   nameChangedHandler = (event, id) => {
