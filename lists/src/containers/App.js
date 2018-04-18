@@ -9,16 +9,29 @@ import Char from '../components/Char';
 // import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: '2114', name: 'Max', age: 28 },
-      { id: '1413', name: 'Manu', age: 29 },
-      { id: '252', name: 'Stephanie', age: 26 }
-    ],
-    otherState: 'some other value',
-    showPersons: false,
-    username: ''
+  constructor(props) {
+    super(props);
+
+    console.log('[App.js] Inside Constructor', props);
+    this.state = {
+      persons: [
+        { id: '2114', name: 'Max', age: 28 },
+        { id: '1413', name: 'Manu', age: 29 },
+        { id: '252', name: 'Stephanie', age: 26 }
+      ],
+      otherState: 'some other value',
+      showPersons: false,
+      username: ''
+    };
   };
+
+  componentWillMount() {
+    console.log('[App.js] Inside component Will Mount')
+  }
+
+  componentDidMount() {
+    console.log('[App.js] Inside component Did Mount')
+  }
 
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
@@ -78,6 +91,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('[App.js] Inside Render');
     const charList = this.state.username.split('').map((char, index) => {
         return <Char
           character={char}
