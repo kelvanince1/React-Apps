@@ -150,7 +150,6 @@ class App extends Component {
         <Validation
           username={this.state.username}
         />
-
         {charList}
       </Ox>
     );

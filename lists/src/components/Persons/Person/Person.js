@@ -6,12 +6,27 @@ import withClass from '../../../hoc/withClass';
 import Ox from '../../../hoc/Ox';
 
 class Person extends Component {
+  constructor(props) {
+    super(props);
+  };
+
+  componentDidMount() {
+    if(this.props.position === 0) {
+      this.inputElement.focus();
+    }
+  };
+
   render() {
     return (
       <Ox>
           <p onClick={this.props.click}>Im {this.props.name} and I am {this.props.age} years old!</p>
           <p>{this.props.children}</p>
-          <input type="text" onChange={this.props.changed} value={this.props.name} />
+          <input
+            ref={(inp) => { this.inputElement = inp }}
+            type="text"
+            onChange={this.props.changed}
+            value={this.props.name}
+          />
       </Ox>
     )
   }
