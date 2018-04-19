@@ -39,15 +39,15 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     console.log('[UPDATE App.js] Inside should Component Update', nextProps, nextState);
-    return nextState.username != this.state.username;
+    return true;
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log('UPDATE App.js] Inside component Will Update');
+    console.log('[UPDATE App.js] Inside component Will Update');
   }
 
   componentDidUpdate() {
-    console.log('UPDATE App.js] Inside component Did Update');
+    console.log('[UPDATE App.js] Inside component Did Update');
   }
 
   nameChangedHandler = (event, id) => {
@@ -131,6 +131,7 @@ class App extends Component {
 
     return (
       <div className={classes.App}>
+        <button onClick={() => {this.setState({ showPersons: true })}}>Show Persons</button>
         <Cockpit
           showPersons={this.state.showPersons}
           persons={this.state.persons}
