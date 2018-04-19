@@ -6,7 +6,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Validation from '../components/Validation';
 import Char from '../components/Char';
-import withClass from '../hoc/WithClass';
+import withClass from '../hoc/withClass';
 import Ox from '../hoc/Ox';
 // import ErrorBoundary from './ErrorBoundary';
 

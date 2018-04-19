@@ -21,7 +21,7 @@ const Cockpit = (props) => {
 
   return (
     <Aux>
-      <h1>Fucker!</h1>
+      <h1>Hi, I am a React App</h1>
       <p className={assignedClasses.join(' ')}>This is really working!</p>
       <button
         className={btnClass}
