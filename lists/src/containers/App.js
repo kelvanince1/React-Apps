@@ -24,7 +24,8 @@ class App extends Component {
       otherState: 'some other value',
       showPersons: false,
       username: '',
-      toggleClicked: 0
+      toggleClicked: 0,
+      authenticated: false
     };
   };
 
@@ -114,6 +115,12 @@ class App extends Component {
     })
   }
 
+  loginHandler = () => {
+    this.setState({
+      authenticated: true
+    })
+  }
+
   render () {
     console.log('[App.js] Inside Render');
     const charList = this.state.username.split('').map((char, index) => {
@@ -130,6 +137,7 @@ class App extends Component {
 
     if (this.state.showPersons) {
       persons = <Persons
+            isAuthenticated={this.state.authenticated}
             persons={this.state.persons}
             clicked={this.deletePersonHandler}
             changed={this.nameChangedHandler}
@@ -143,6 +151,7 @@ class App extends Component {
           showPersons={this.state.showPersons}
           persons={this.state.persons}
           clicked={this.togglePersonsHandler}
+          login={this.loginHandler}
         />
         {persons}
         <input type='text' onChange={this.setLength} value={this.state.username} />

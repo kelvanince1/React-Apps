@@ -10,6 +10,7 @@ class Persons extends Component {
             click={() => this.props.clicked(index)}
             name={person.name}
             position={index}
+            authenticated={this.props.isAuthenticated}
             age={person.age}
             key={person.id}
             changed={(event) => this.props.changed(event, person.id)}

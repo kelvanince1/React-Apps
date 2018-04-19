@@ -6,9 +6,9 @@ import withClass from '../../../hoc/withClass';
 import Ox from '../../../hoc/Ox';
 
 class Person extends Component {
-  constructor(props) {
-    super(props);
-  };
+  // constructor(props) {
+  //   super(props);
+  // };
 
   componentDidMount() {
     if(this.props.position === 0) {
@@ -19,6 +19,7 @@ class Person extends Component {
   render() {
     return (
       <Ox>
+          {this.props.authenticated ? <p>I am authenticated</p> : null}
           <p onClick={this.props.click}>Im {this.props.name} and I am {this.props.age} years old!</p>
           <p>{this.props.children}</p>
           <input
