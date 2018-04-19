@@ -6,6 +6,8 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Validation from '../components/Validation';
 import Char from '../components/Char';
+import withClass from '../hoc/WithClass';
+import Ox from '../hoc/Ox';
 // import ErrorBoundary from './ErrorBoundary';
 
 class App extends Component {
@@ -130,7 +132,7 @@ class App extends Component {
     };
 
     return (
-      <div className={classes.App}>
+      <Ox>
         <button onClick={() => {this.setState({ showPersons: true })}}>Show Persons</button>
         <Cockpit
           showPersons={this.state.showPersons}
@@ -145,10 +147,10 @@ class App extends Component {
         />
 
         {charList}
-      </div>
+      </Ox>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
