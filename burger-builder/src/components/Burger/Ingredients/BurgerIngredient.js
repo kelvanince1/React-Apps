@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import classes from './BurgerIngrediant.css';
+import classes from './BurgerIngredient.css';
 
-class BurgerIngrediant extends Component {
+class BurgerIngredient extends Component {
   render() {
-    let ingrediant = null;
+    let ingredient = null;
 
     switch(this.props.type) {
       case('bread-bottom'):
-        ingrediant = <div className={classes.BreadBottom}></div>
+        ingredient = <div className={classes.BreadBottom}></div>
         break;
       case('bread-top'):
-        ingrediant = (
+        ingredient = (
           <div className={classes.BreadTop}>
             <div className={classes.Seeds1}></div>
             <div className={classes.Seeds2}></div>
@@ -20,26 +20,26 @@ class BurgerIngrediant extends Component {
         );
         break;
       case('meat'):
-        ingrediant = <div className={classes.Meat}></div>
+        ingredient = <div className={classes.Meat}></div>
         break;
       case('cheese'):
-        ingrediant = <div className={classes.Cheese}></div>
+        ingredient = <div className={classes.Cheese}></div>
         break;
       case('salad'):
-        ingrediant = <div className={classes.Salad}></div>
+        ingredient = <div className={classes.Salad}></div>
         break;
       case('bacon'):
-        ingrediant = <div className={classes.Bacon}></div>
+        ingredient = <div className={classes.Bacon}></div>
         break;
       default:
-        ingrediant = null;
+        ingredient = null;
     }
-    return ingrediant;
+    return ingredient;
   }
 }
 
-BurgerIngrediant.propTypes = {
+BurgerIngredient.propTypes = {
   type: PropTypes.string.isRequired
 };
 
-export default BurgerIngrediant;
+export default BurgerIngredient;

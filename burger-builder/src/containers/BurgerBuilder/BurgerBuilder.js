@@ -5,7 +5,7 @@ import Aux from '../../hoc/Auxillery';
 
 class BurgerBuilder extends Component {
   state = {
-    ingrediants: {
+    ingredients: {
       salad: 0,
       bacon: 0,
       cheese: 0,
@@ -17,7 +17,7 @@ class BurgerBuilder extends Component {
     return (
       <Aux>
         <Burger
-          ingrediants={this.state.ingrediants}
+          ingredients={this.state.ingredients}
         />
         <div>Controls</div>
       </Aux>
