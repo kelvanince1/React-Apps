@@ -12,10 +12,10 @@ class BurgerIngrediant extends Component {
         ingrediant = <div className={classes.BreadBottom}></div>
         break;
       case('bread-top'):
-        indgrediant = (
+        ingrediant = (
           <div className={classes.BreadTop}>
-            <div className={classes.Seeds1}</div>
-            <div className={classes.Seeds2}</div>
+            <div className={classes.Seeds1}></div>
+            <div className={classes.Seeds2}></div>
           </div>
         );
         break;
@@ -23,13 +23,13 @@ class BurgerIngrediant extends Component {
         ingrediant = <div className={classes.Meat}></div>
         break;
       case('cheese'):
-        ingrediant = <div className={classes.Cheese}</div>
+        ingrediant = <div className={classes.Cheese}></div>
         break;
       case('salad'):
-        ingrediant = <div className={classes.Salad}</div>
+        ingrediant = <div className={classes.Salad}></div>
         break;
       case('bacon'):
-        ingrediant = <div className={classes.Bacon}</div>
+        ingrediant = <div className={classes.Bacon}></div>
         break;
       default:
         ingrediant = null;

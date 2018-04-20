@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
+import Burger from '../../components/Burger/Burger';
 import Aux from '../../hoc/Auxillery';
 
 class BurgerBuilder extends Component {
   render() {
     return (
       <Aux>
-        <div>Burger</div>
+        <Burger />
         <div>Controls</div>
       </Aux>
     )
