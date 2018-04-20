@@ -6,7 +6,7 @@ import classes from './Layout.css';
 const layout = (props) => (
   <Aux>
     <div></div>
-    <main classNam={classes.Content}>
+    <main className={classes.Content}>
       {props.children}
     </main>
   </Aux>
