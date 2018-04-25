@@ -21,3 +21,4 @@ yarn-debug.log*
 yarn-error.log*
 
 axios-orders.js
+axiosUrl.js
