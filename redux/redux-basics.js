@@ -42,3 +42,6 @@ console.log(store.getState());
 
 
 // Subscription
+store.subscribe(() => {
+  console.log('SUBSCRIPTION', store.getState());
+});
