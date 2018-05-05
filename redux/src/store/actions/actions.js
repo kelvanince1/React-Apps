@@ -31,7 +31,20 @@ export const subtract = (payload) => {
   };
 };
 
+export const saveResult = (payload) => {
+  return {
+    type: "STORE_RESULT",
+    payload: payload
+  }
+}
+
 export const storeResult = (payload) => {
+  return dispatch => {
+    setTimeout(() => {
+      dispatch(saveResult(payload))
+    }, 2000);
+  };
+
   return {
     type: "STORE_RESULT",
     payload: payload
