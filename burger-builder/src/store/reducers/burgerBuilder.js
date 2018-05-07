@@ -37,7 +37,8 @@ const burgerReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: action.payload,
-        error: false
+        error: false,
+        totalPrice: 4
       };
     case actionTypes.FETCH_INGREDIENTS_FAILED:
       return {
