@@ -7,11 +7,16 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
   switch(action.type) {
+    case actionTypes.PURCHASE_BURGER_START:
+    return {
+      ...state,
+      loading: true
+    };
     case actionTypes.PURCHASE_BURGER_SUCCESS:
       const newOrder = {
         ...action.orderData,
         id: action.orderId
-      }
+      };
       return {
         ...state,
         loading: false,
@@ -21,10 +26,9 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false
-      }
+      };
     case default:
       return state;
-  }
-}
-
+  };
+};
 export default reducer;
