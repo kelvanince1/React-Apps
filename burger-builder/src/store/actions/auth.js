@@ -37,13 +37,13 @@ export const auth = (email, password, isSignUp) => {
       url = SIGN_IN
     }
     axios.post(url, authData)
-      .then(res => {
-        console.log(res);
-        dispatch(authSuccess(res.data.idToken, res.data.localId))
+      .then(response => {
+        console.log(response);
+        dispatch(authSuccess(response.data.idToken, response.data.localId))
       })
       .catch(err => {
         console.log(err);
-        dispatch(authFail(err));
+        dispatch(authFail(err.response.data.error));
       })
   };
 };
