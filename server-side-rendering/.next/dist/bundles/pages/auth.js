@@ -72,17 +72,16 @@ module.exports =
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/auth/index.js":
+/***/ "./components/User.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _jsxFileName = "C:\\Users\\kince\\Desktop\\React-Apps\\server-side-rendering\\pages\\auth\\index.js";
+var _jsxFileName = "C:\\Users\\kince\\Desktop\\React-Apps\\server-side-rendering\\components\\User.js";
 
 
-var authPage = function authPage() {
+var user = function user(props) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
     __source: {
       fileName: _jsxFileName,
@@ -93,7 +92,49 @@ var authPage = function authPage() {
       fileName: _jsxFileName,
       lineNumber: 5
     }
-  }, "Auth Page"));
+  }, props.name), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    }
+  }, "Age: ", props.age));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = (user);
+
+/***/ }),
+
+/***/ "./pages/auth/index.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_User__ = __webpack_require__("./components/User.js");
+var _jsxFileName = "C:\\Users\\kince\\Desktop\\React-Apps\\server-side-rendering\\pages\\auth\\index.js";
+
+
+
+var authPage = function authPage() {
+  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 6
+    }
+  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 7
+    }
+  }, "Auth Page"), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_User__["a" /* default */], {
+    name: "Kelvan",
+    age: 25,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 8
+    }
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (authPage);
