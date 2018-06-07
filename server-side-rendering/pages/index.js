@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
 
-const indexPage = () => (
-  <div>
-    <h1>Main Page</h1>
-    <p>Go to <Link href="/auth"><a>Auth</a></Link></p>
-  </div>
-)
+class IndexPage extends Component {
+  static async getInitialProps(context) {
+    return {appName: 'Super App'};
+  };
 
-export default indexPage;
+  render() {
+    return (
+      <div>
+        <h1>{this.props.appName}</h1>
+        <p>Go to <Link href="/auth"><a>Auth</a></Link></p>
+      </div>
+    )
+  }
+}
+
+export default IndexPage;
