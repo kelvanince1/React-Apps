@@ -7,6 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    chunkFilename: '[id].js',
     publicPath: ''
   },
   resolve: {
@@ -20,7 +21,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: ?\.css$/,
+        test: /\.css$/,
         exclude: /node_modules/,
         use: [
           { loader: 'style-loader'},

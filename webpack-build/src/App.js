@@ -12,13 +12,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Link to="/">Users</Link> |
-        <Link to="/pizza">Pizza</Link>
-      </div>
+        <div>
+          <Link to="/">Users</Link> |
+          <Link to="/pizza">Pizza</Link>
+        </div>
 
-      <div>
-        <Route path="/" exact component={Users} />
-        <Route path="/pizza" component={AsyncPizza} />
+        <div>
+          <Route path="/" exact component={Users} />
+          <Route path="/pizza" component={AsyncPizza} />
+        </div>
       </div>
     );
   };
