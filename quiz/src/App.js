@@ -9,7 +9,7 @@ class App extends Component {
         <Questionairre />
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
