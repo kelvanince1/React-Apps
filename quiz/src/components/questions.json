@@ -1,0 +1,31 @@
+{
+  "results": [
+    {
+      "question": "What is the worlds most expensive spice by weight?",
+      "correct_answer": "Saffron",
+      "incorrect_answers": [
+        "Cinnamon",
+        "Cardamom",
+        "Vanilla"
+      ]
+    },
+    {
+      "question": "In a standard set of playing cards, which is the only king without a moustache?",
+      "correct_answer": "Hearts",
+      "incorrect_answers": [
+        "Spades",
+        "Diamonds",
+        "Clubs"
+      ]
+    },
+    {
+      "question": "Which river flows through the Scottish city of Glasgow?",
+      "correct_answer": "Clyde",
+      "incorrect_answers": [
+        "Tay",
+        "Dee",
+        "Tweed"
+      ]
+    }
+  ]
+}
