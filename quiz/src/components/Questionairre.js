@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import questions from './questions.json';
+import './Questionairre.css';
 
 class Questionairre extends Component {
   state = {
@@ -30,7 +31,7 @@ class Questionairre extends Component {
       return (
           <div key={i}>
             <p>{item.question}</p>
-            <ul style={{ 'listStyleType': 'none' }}>
+            <ul style={{ 'listStyleType': 'none', textAlign: 'center' }}>
               <li onClick={() => this.handleClick(item.incorrect_answers[0].one)}>{item.incorrect_answers[0].one}</li>
               <li onClick={() => this.handleClick(item.incorrect_answers[0].two)}>{item.incorrect_answers[0].two}</li>
               <li onClick={() => this.handleClick(item.incorrect_answers[0].three)}>{item.incorrect_answers[0].three}</li>
@@ -41,8 +42,10 @@ class Questionairre extends Component {
     });
     return (
       <div>
-        <h4>Your score: {this.state.totalScore}</h4>
-        {result}
+        <h4 style={{'fontFamily': 'times-new-roman'}}>Your score: {this.state.totalScore}</h4>
+        <div className="Questionairre">
+          {result}
+        </div>
       </div>
     );
   };

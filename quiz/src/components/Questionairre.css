@@ -1,0 +1,11 @@
+.Questionairre {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}
+
+h4 {
+  text-align: center;
+}
