@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
 import Header from './components/header_footer/Header';
+import Footer from './components/header_footer/Footer';
 import Featured from './components/featured';
 import VenueNfo from './components/venueNfo';
 import Highlights from './components/highlights';
 import Pricing from './components/pricing';
+import Location from './components/location';
 import './resources/styles.css';
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
         <VenueNfo />
         <Highlights />
         <Pricing />
+        <Location />
+        <Footer />
       </div>
     );
   }
