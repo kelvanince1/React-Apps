@@ -6,7 +6,7 @@ import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
 import Validation from '../components/Validation';
 import Char from '../components/Char';
-import withClass from '../hoc/withClass';
+import WithClass from '../hoc/WithClass';
 import Ox from '../hoc/Ox';
 // import ErrorBoundary from './ErrorBoundary';
 
@@ -166,4 +166,4 @@ class App extends Component {
   }
 }
 
-export default withClass(App, classes.App);
+export default WithClass(App, classes.App);
