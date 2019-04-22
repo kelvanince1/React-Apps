@@ -1,11 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
+
+import AuthContext from '../auth-context';
 
 const header = props => {
+    const auth = useContext(AuthContext);
     return (
         <header>
-            <button onClick={props.onLoadTodos}>
+            {
+              auth.status ?
+              <button onClick={props.onLoadTodos}>
                 Todo List
-            </button>
+              </button>
+              :
+              null
+            }
             |
             <button onClick={props.onLoadAuth}>
                 Auth
