@@ -16,7 +16,7 @@ const TinyReact = (function () {
                 return acc;
             },
         []);
-        
+
         return {
             type,
             children: childElements,
@@ -24,7 +24,41 @@ const TinyReact = (function () {
         }
     }
 
+    const render = function(vdom, container, oldDom = container.firstChild) {
+        if (!oldDom) {
+            mountElement(vdom, container, oldDom);
+        }
+    }
+
+    const mountElement = function(vdom, container, oldDom) {
+        return mountSimpleNode(vdom, container, oldDom);
+    }
+
+    const mountSimpleNode = function(vdom, container, oldDomElement, parentComponent) {
+        let newDomElement = null;
+        const nextSibling = oldDomElement && oldDomElement.nextSibling;
+
+        if (vdom.type === 'text') {
+            newDomElement = document.createTextNode(vdom.props.textContent);
+        } else {
+            newDomElement = document.createElement(vdom.type);
+        }
+
+        newDomElement._virtualElement = vdom;
+
+        if (nextSibling) {
+            container.insertBefore(newDomElement, nextSibling);
+        } else {
+            container.appendChild(newDomElement);
+        }
+
+        vdom.children.forEach(child => {
+            mountElement(child, newDomElement);
+        })
+    }
+
     return {
-        createElement
+        createElement,
+        render
     }
 }());

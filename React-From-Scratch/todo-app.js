@@ -20,3 +20,5 @@ const Step1 = (
   );
   
   console.log(Step1);
+
+  TinyReact.render(Step1, root);
