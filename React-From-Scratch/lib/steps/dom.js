@@ -1,13 +1,22 @@
 const TinyReact = (function () {
     function createElement(type, attributes = {}, ...children) {
-        const childElements = [].concat(...children).map(
-            child => 
-                child instanceof Object
-                    ? child
-                    : createElement('text', {
-                        textContent: child
-                    })
-        );
+        let childElements = [].concat(...children).reduce(
+            (acc, child) => {
+                if (child !== null && child !== true && child !== false) {
+                    if (child instanceof Object) {
+                        acc.push(child);
+                    } else {
+                        acc.push(
+                            createElement('text', {
+                                textContent: child
+                            })
+                        )
+                    }
+                }
+                return acc;
+            },
+        []);
+        
         return {
             type,
             children: childElements,
