@@ -25,9 +25,41 @@ const TinyReact = (function () {
     }
 
     const render = function(vdom, container, oldDom = container.firstChild) {
+        diff(vdom, container, oldDom);
+    }
+
+    const diff = function(vdom, container, oldDom) {
+        let oldvdom = oldDom && oldDom._virtualElement;
+
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
+        } else if (oldvdom && oldvdom.type === vdom.type) {
+            if (oldvdom.type === 'text') {
+                updateTextNode(oldDom, vdom, oldvdom);
+            } else {
+                updateDomElement(oldDom, vdom, oldvdom);
+            }
+
+            oldDom._virtualElement = vdom;
+
+            // Recursively diff children
+            vdom.children.forEach((child, i) => {
+                diff(child, oldDom, oldDom.childNodes[i]);
+            });
+
+            // Remove old nodes
+            let oldNodes = oldDom.childNodes;
+            if (oldNodes.length > vdom.children.length) {
+                for (let i = oldNodes.length - 1; i >= vdom.children.length; i -= 1) {
+                    let nodeToBeRemoved = oldNodes[i];
+                    unmountNode(nodeToBeRemoved, oldDom);
+                }
+            }
         }
+    }
+
+    function unmountNode(domElement, parentComponent) {
+        domElement.remove();
     }
 
     const mountElement = function(vdom, container, oldDom) {
@@ -100,6 +132,48 @@ const TinyReact = (function () {
                 }
             }
         });
+    }
+
+    function updateTextNode(domElement, newVirtualElement, oldVirtualElement) {
+        if (newVirtualElement.props.textContent !== oldVirtualElement.props.textContent) {
+            domElement.textContent = newVirtualElement.props.textContent;
+        }
+        // Set a reference to the newvddom in oldDom
+        domElement._virtualElement = newVirtualElement;
+    }
+
+    function unmountNode(domElement, parentComponent) {
+        const virtualElement = domElement._virtualElement;
+        if (!virtualElement) {
+            domElement.remove();
+            return;
+        }
+
+        // If component exist
+        let oldComponent = domElement._virtualElement.component;
+        if (oldComponent) {
+            oldComponent.componentWillUnmount();
+        }
+
+        // Recursive calls agains
+        while (domElement.childNodes.length > 0) {
+            unmountNode(domElement.firstChild);
+        }
+
+        if (virtualElement.props && virtualElement.props.ref) {
+            virtualElement.props.ref(null);
+        }
+
+        // Clear out event handlers
+        Object.keys(virtualElement.props).forEach(propName => {
+            if (propName.slice(0, 2) === "on") {
+                const event = propName.toLowerCase().slice(2);
+                const handler = virtualElement.props[propName];
+                domElement.removeEventListener(event, handler);
+            }
+        });
+
+        domElement.remove();
     }
 
     return {
