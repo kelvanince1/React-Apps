@@ -21,7 +21,7 @@ const Step1 = (
   
 console.log(Step1);
 
-TinyReact.render(Step1, root);
+// TinyReact.render(Step1, root);
 
 
   const Step2 = (
@@ -38,7 +38,12 @@ TinyReact.render(Step1, root);
     </div>
   );
   
-setTimeout(() => {
-  alert('Re-rendering...');
-  TinyReact.render(Step2, root);
-}, 4000);
+// setTimeout(() => {
+//   alert('Re-rendering...');
+//   TinyReact.render(Step2, root);
+// }, 4000);
+
+const Test = () => <span>&hearts;</span>;
+
+console.log(Test);
+TinyReact.render(<Test />, root);

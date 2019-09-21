@@ -33,6 +33,8 @@ const TinyReact = (function () {
 
         if (!oldDom) {
             mountElement(vdom, container, oldDom);
+        } else if (typeof vdom.type === 'function') {
+            diffComponent(vdom, null, container, oldDom);
         } else if (oldvdom && oldvdom.type === vdom.type) {
             if (oldvdom.type === 'text') {
                 updateTextNode(oldDom, vdom, oldvdom);
@@ -62,8 +64,58 @@ const TinyReact = (function () {
         domElement.remove();
     }
 
-    const mountElement = function(vdom, container, oldDom) {
-        return mountSimpleNode(vdom, container, oldDom);
+    function diffComponent(newVirtualElement, oldComponent, container, domElement) {
+        if (oldComponent) {
+            mountElement(newVirtualElement, container, domElement);
+        }
+    }
+
+    const mountElement = function (vdom, container, oldDom) {
+        if (isFunction(vdom)) {
+            return mountComponent(vdom, container, oldDom);
+        } else {
+            return mountSimpleNode(vdom, container, oldDom);
+        }
+    }
+
+    function isFunction(obj) {
+        return obj && 'function' === typeof obj.type;
+    }
+
+    function buildFunctionalComponent(vnode, context) {
+        return vnode.type(vnode.props || {});
+    }
+
+    function isFunctionalComponent(vnode) {
+        let nodeType = vnode && vnode.type;
+        return nodeType && isFunction(vnode)
+            && !(nodeType.prototype && nodeType.prototype.render);
+    }
+
+    function mountComponent(vdom, container, oldDomElement) {
+        let nextvDom = null, component = null, newDomElement = null;
+        if (isFunctionalComponent(vdom)) {
+            nextvDom = buildFunctionalComponent(vdom);
+        } else {
+            nextvDom = buildStatefulComponent(vdom);
+            component = nextvDom.component;
+        }
+
+        // Recursively render child components
+        if (isFunction(nextvDom)) {
+            return mountComponent(nextvDom, container, oldDomElement);
+        } else {
+            newDomElement = mountElement(nextvDom, container, oldDomElement);
+        }
+
+        if (component) {
+            component.componentDidMount();  // Life cycle method
+            if (component.props.ref) {
+                component.props.ref(component);
+            }
+        }
+
+        return newDomElement;
     }
 
     const mountSimpleNode = function(vdom, container, oldDomElement, parentComponent) {
