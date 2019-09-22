@@ -43,7 +43,21 @@ console.log(Step1);
 //   TinyReact.render(Step2, root);
 // }, 4000);
 
-const Test = () => <span>&hearts;</span>;
+const Test = (props) => <span style={props.style}>&hearts;</span>;
 
-console.log(Test);
-TinyReact.render(<Test />, root);
+// console.log(Test);
+// TinyReact.render(<Test style="color:red" />, root);
+
+const Button = (props) => <button onClick={props.onClick}>{props.children}</button>;
+
+const Greeting = function(props) {
+  return (
+    <div className="greeting">
+      <h2>Welcome {props.greeting}</h2>
+
+      <Button onClick={() => alert('I love React')}>I <Test /> React</Button>
+    </div>
+  );
+}
+
+TinyReact.render(<Greeting meeting="Good Day" />, root);
