@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
 import { robots } from './robots';
-import Card from './components/Card';
+import CardList from './components/CardList';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Card />
+        <CardList
+          robots={robots}
+        />
       </div>
     );
   }
