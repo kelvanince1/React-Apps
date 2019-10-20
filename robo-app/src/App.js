@@ -15,8 +15,6 @@ class App extends Component {
   }
 
   onSearch = (e) => {
-    const { robots, searchField } = this.state;
-
     this.setState({
       searchField: e.target.value
     });
