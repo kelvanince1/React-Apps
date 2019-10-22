@@ -1,31 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { robots } from './robots';
 import CardList from './components/CardList';
 import ErrorBoundary from './components/ErrorBoundary';
 import Scroll from './components/Scroll';
 import SearchBox from './components/SearchBox';
-import { setSearchField } from './actions/actions';
+import { setSearchField, requestRobots } from './actions/actions';
 
 class App extends Component {
-  constructor() {
-    super();
 
-    this.state = {
-      robots: robots
-    }
+  componentDidMount() {
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { robots } = this.state;
-    const { onSearch, searchField } = this.props;
+    const { isPending, onSearch, robots, searchField } = this.props;
 
     const filteredRobots = robots.filter(robot => {
       return robot.name.toLowerCase().includes(searchField.toLowerCase());
     })
 
-    return (
+    return isPending ?
+      <h1>Loading</h1>
+    : (
       <div className="tc">
         <h1>Robots</h1>
         <SearchBox
@@ -45,13 +42,17 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    searchField: state.searchField
+    searchField: state.searchRobots.searchField,
+    robots: state.requestRobots.robots,
+    isPending: state.requestRobots.isPending,
+    error: state.requestRobots.error
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSearch: (event) => dispatch(setSearchField(event.target.value))
+    onSearch: (event) => dispatch(setSearchField(event.target.value)),
+    onRequestRobots: () => dispatch(requestRobots())
   }
 }
 
