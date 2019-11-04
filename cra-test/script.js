@@ -7,12 +7,14 @@ const googleDatabase = [
     'morecats.com'
 ];
 
-const googleSearch = (searchInput) => {
-    const matches = googleDatabase.filter(site => {
+const googleSearch = (searchInput, db) => {
+    const matches = db.filter(site => {
         return site.includes(searchInput);
     });
 
     return matches.length > 3 ? matches.slice(0,2) : matches;
 }
 
-console.log(googleSearch('cats'));
+// console.log(googleSearch('cats', googleDatabase));
+
+module.exports = googleSearch;
