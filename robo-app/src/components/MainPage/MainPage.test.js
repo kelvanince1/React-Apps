@@ -23,18 +23,39 @@ it('Expect to render MainPage component', () => {
 it('Filter robots correctly', () => {
     const mockProps2 = {
         onRequestRobots: jest.fn(),
-        robots: [
-            {
+        robots: [{
                 id: 3,
-                name: 'Johnny',
-                email: 'jonhhy@gmail.com'
-            }
-        ],
-        searchField: 'aaa',
+                name: 'John',
+                email: 'john@gmail.com'
+            }],
+        searchField: 'john',
         isPending: false 
     }
 
     const wrapper2 = shallow(<MainPage { ...mockProps2 } />)
 
-    expect(wrapper2.instance().filterRobots([])).toEqual([]);
+    // expect(wrapper2.instance().filterRobots([])).toEqual([]);
+    expect(wrapper2.instance().filterRobots()).toEqual([{
+        id: 3,
+        name: 'John',
+        email: 'john@gmail.com'
+    }]);
 });
+
+// it('Filter robots correctly 3', () => {
+//     const mockProps3 = {
+//         onRequestRobots: jest.fn(),
+//         robots: [{
+//                 id: 3,
+//                 name: 'John',
+//                 email: 'john@gmail.com'
+//             }],
+//         searchField: 'john',
+//         isPending: false 
+//     }
+
+//     const filteredRobots = [];
+//     const wrapper3 = shallow(<MainPage { ...mockProps3 } />)
+
+//     expect(wrapper3.instance().filterRobots()).toEqual(filteredRobots);
+// });
