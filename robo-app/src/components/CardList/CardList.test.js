@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import CardList from './index';
 
-it('Expect to render Card component', () => {
+it('Expect to render Card List component', () => {
     const mockRobots = [
         {
             id: 1,

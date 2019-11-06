@@ -1,3 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Expect to render Card List component 1`] = `ShallowWrapper {}`;
+
 exports[`Expect to render Card component 1`] = `ShallowWrapper {}`;
+
+exports[`Expect to render CardList component 1`] = `ShallowWrapper {}`;
+
+exports[`Expect to render Cardist component 1`] = `ShallowWrapper {}`;
