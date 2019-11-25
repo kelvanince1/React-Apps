@@ -4,7 +4,7 @@ const Index = () => (
     <div>
         <h1>SSR Magician</h1>
         <Link href="/about"><a>About</a></Link>
-        {/* <a href="/about">About</a> */}
+        <Link href="/robots"><a>Robots</a></Link>
     </div>
 );
 
