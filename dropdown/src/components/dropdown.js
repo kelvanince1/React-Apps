@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useState } from 'react';
 
-const Dropdown = (elements) => {
+const styles = {
+    container: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexDirection: 'column',
+        height: '500px'
+    }
+};
+
+const Dropdown = (props) => {
+    const [item, setItem] = React.useState('');
+
+    const handleItemChange = item => {
+        setItem(item);
+        console.log(item);
+    }
+
     return (
-        <div>
-            <select>
+        <div style={styles.container}>
+            <select value={item} onChange={event => handleItemChange(event.target.value)}>
                 {
-                    elements.elements.map(item => <option key={item}>{item}</option>)
+                    props.elements.map(item => <option key={item}>{item}</option>)
                 }
             </select>
             <div>
