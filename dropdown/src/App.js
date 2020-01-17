@@ -1,13 +1,12 @@
 import React from 'react';
 
-import Dropdown from './components/dropdown';
+// import Dropdown from './components/dropdown';
+import Form from './components/form';
 
 const App = () => {
   return (
     <div>
-      <Dropdown
-        elements={['-', '1', '2', '3', '4', '5']}
-      />
+      <Form />
     </div>
   );
 }
