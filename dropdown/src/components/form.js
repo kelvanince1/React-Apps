@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 
 const Form = () => {
     const [value, setValue] = useState('');
-    const results = [];
-
-    const pushItem = () => {
-        results.push(value);
-    }
+    const [results, setResults] = useState([]);
 
     console.log(results);
 
@@ -16,7 +12,7 @@ const Form = () => {
                 value={value}
                 onChange={e => setValue(e.target.value)}
             />
-            <button onClick={() => pushItem()}>Add</button>
+            <button onClick={() => setResults(oldResults => [...oldResults, value])}>Add</button>
             <div>
                 {
                     results.map(todo => <li key={todo}>{todo}</li>)
