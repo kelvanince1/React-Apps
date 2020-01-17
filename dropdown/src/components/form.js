@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 const Form = () => {
+    // const text = useInputValue('');
     const [value, setValue] = useState('');
     const [results, setResults] = useState([]);
-
-    console.log(results);
 
     return (
         <div>
