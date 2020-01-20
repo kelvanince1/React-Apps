@@ -1,54 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const styles = {
-    container: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        flexDirection: 'column',
-        height: '500px'
-    },
-    field: {
-        width: '15rem',
-        height: '2rem',
-        padding: '5rem',
-        margin: '1.5rem'
-    },
-    button: {
-        borderRadius: '10px',
-        width: '7rem',
-        height: '2rem',
-        fontSize: '0.8rem',
-        backgroundColor: '#D6328E',
-        color: '#fff'
-    }
-};
+import Form from './components/form';
 
-const Dropdown = (props) => {
-    const [item, setItem] = useState('');
+function App() {
+  const [todos, setTodos] = useState([]);
 
-    const handleItemChange = item => {
-        setItem(item);
-        console.log(item);
-    }
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => {
+        if (!response) {
+          throw new Error('Failed');
+        }
 
-    return (
-        <div style={styles.container}>
-            <select
-                value={item}
-                onChange={event => handleItemChange(event.target.value)}
-                style={styles.field}
+        const res = response.json();
+
+        return res;
+      })
+        .then(data => {
+          console.log('DATA', data);
+          data.map(() => setTodos(data.map(item =>  item, ...todos)));
+        })
+  }, []);
+
+  const setTodo = todo => setTodos(todos.map((item, j) => j === todo ? { ...item, done: !item.done } : item ));
+
+  return (
+    <div>
+      <Form
+        onSubmit={title => setTodos([ { title }, ...todos ])}
+      />
+      <div>
+        {
+          todos.map((todo, i) => (
+            <li
+              key={todo.title}
+              onClick={() => setTodo(i)}
+              style={{
+                'textDecoration': todo.done ? 'line-through' : ''
+              }}
             >
-                {
-                    props.elements.map(item => <option key={item}>{item}</option>)
-                }
-            </select>
-            <div>
-                <button style={styles.button}>Choose</button>
-            </div>
-            {item}
-        </div>
-    );
+              {todo.title}
+            </li>
+          ))
+        }
+      </div>
+    </div>
+  );
 }
 
-export default Dropdown;
+export default App;
