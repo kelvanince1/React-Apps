@@ -1,67 +1,34 @@
-// import React, { useState } from 'react';
-
-// // import Dropdown from './components/dropdown';
-// import ReusableForm from './components/reusableForm';
-
-// const App = () => {
-//   const [todos, setTodos] = useState([]);
-
-//   const toggleComplete = (i) => setTodos(todos.map((todo, k) => k === i ? { ...todo, complete: !todo.complete } : todo))
-
-//   return (
-//     <div>
-//       <ReusableForm
-//         onSubmit={text => setTodos([ { text, complete: false }, ...todos])}
-//       />
-//       <div>
-//         {
-//           todos.map(
-//             (todo, i) => (
-//               <li
-//                 onClick={() => toggleComplete(i)}
-//                 key={todo.text}
-//                 style={{
-//                   textDecoration: todo.complete ? 'line-through' : ''
-//                 }}
-//               >
-//                 {todo.text}
-//               </li>
-//             )
-//           )
-//         }
-//       </div>
-//       <button onClick={() => setTodos([])}>Reset</button>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReusableForm from './components/reusableForm';
 
 const App = () => {
   const [todos, setTodos] = useState([]);
 
-  const markComplete = (i) => setTodos(todos.map((todo, j) => j === i ? { ...todo, done: !todo.done } : todo))
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then(response => response.json())
+      .then(data => setTodos(data))
+  }, [])
+
+  const markComplete = (i) => setTodos(todos.map((todo, j) => j === i ? { ...todo, completed: !todo.completed } : todo));
 
   return (
     <div>
       <ReusableForm
-        onSubmit={value => setTodos([ { value, done: false }, ...todos ])}
+        onSubmit={title => setTodos([ { title, completed: false }, ...todos ])}
       />
       <div>
         {
           todos.map((todo, i) => (
             <li
-              key={todo.value}
+              key={todo.title}
               onClick={() => markComplete(i)}
               style={{
-                'textDecoration': todo.done ? 'line-through' : ''
+                'textDecoration': todo.completed ? 'line-through' : '',
+                'cursor': 'pointer'
               }}
             >
-              {todo.value}
+              {todo.title}
             </li>
           ))
         }
