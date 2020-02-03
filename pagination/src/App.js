@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import Posts from './components/Posts';
+
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -20,9 +22,16 @@ const App = () => {
 
   console.log(posts);
 
+  const indexLastPost = currentPage * postsPerPage;
+  const indexFirstPost = indexLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexFirstPost, indexLastPost);
+
   return (
     <div>
-      My App
+      <Posts
+        posts={currentPosts}
+        loading={loading}
+      />
     </div>
   );
 }
