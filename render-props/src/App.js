@@ -5,7 +5,7 @@ import ToggleRender from './ToggleRender';
 function App() {
   return (
     <div className="App">
-      <ToggleRender>
+      <ToggleRender markup="vertical">
         {({ todos }) => (
           <div>
             {todos.map(todo => (
@@ -16,7 +16,7 @@ function App() {
       </ToggleRender>
 
 
-      <ToggleRender>
+      <ToggleRender markup="flex">
         {({ todos }) => (
           <div style={{ display: 'flex' }}>
             {todos.map(todo => (
