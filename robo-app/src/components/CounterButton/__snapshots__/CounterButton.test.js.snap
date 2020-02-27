@@ -1,5 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Expect to render Card component 1`] = `ShallowWrapper {}`;
-
-exports[`Expect to render Counter Button component 1`] = `ShallowWrapper {}`;
