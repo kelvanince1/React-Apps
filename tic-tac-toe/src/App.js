@@ -48,6 +48,8 @@ const Board = () => {
   const handleClick = index => {
     const squares = [...boardSquares];
 
+    if (calculateWinner(boardSquares) || squares[index]) return;
+
     if (squares[index]) return;
 
     squares[index] = suitX ? 'X' : 'O';
