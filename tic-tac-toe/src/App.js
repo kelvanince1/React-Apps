@@ -41,7 +41,27 @@ const Square = props => {
 // -- --> IF -- index of board is filled, return.
 // -- --> Calculate next turn (setting state of turn)
 const Board = () => {
-  const [boardSquare, setBoardSquare] = useState([]);
+  const [boardSquares, setBoardSquares] = useState(Array(9).fill(null));
+  const [suitX, setSuit] = useState(true);
+
+  const handleClick = index => {
+    const squares = [...boardSquares];
+
+    if (squares[index]) return;
+
+    squares[index] = suitX ? 'X' : 'O';
+
+    setBoardSquares(squares);
+
+    setSuit(!suitX);
+
+    return (
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    )
+  }
 }
 
 // FUNCTION CALCULATING WINNER
