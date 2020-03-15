@@ -60,8 +60,12 @@ const Board = () => {
     return <Square value={boardSquares[index]} onClick={() => handleClick(index)} />
   }
 
+  let status;
+  status = `Next player: ${suitX ? 'X' : 'O'}`
+
   return (
     <div>
+      <div>{status}</div>
       <div>{renderSquare(0)}{renderSquare(1)}{renderSquare(2)}</div>
       <div>{renderSquare(3)}{renderSquare(4)}{renderSquare(5)}</div>
       <div>{renderSquare(6)}{renderSquare(7)}{renderSquare(8)}</div>
