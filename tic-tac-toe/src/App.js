@@ -3,12 +3,13 @@ import React, { useState } from 'react';
 const styles = {
   container: {
     display: 'grid',
-    gridTemplateRows: '200px 200px 200px',
-    gridTemplateColumns: '200px 200px 200px',
-    gridGap: '5px'
+    gridTemplateRows: '500px 500px 500px',
+    gridTemplateColumns: '500px 500px 500px',
+    gridGap: '8px'
   },
   buttonContainer: {
-    border: '2px solid #eee'
+    border: '20px solid #eee',
+    margin: '10px'
   }
 }
 
@@ -61,7 +62,9 @@ const Board = () => {
   }
 
   let status;
-  status = `Next player: ${suitX ? 'X' : 'O'}`
+  const winner = calculateWinner(boardSquares);
+
+  status = winner ? `Winner is ${winner}` : `Next player: ${suitX ? 'X' : 'O'}`;
 
   return (
     <div>
@@ -85,4 +88,14 @@ const calculateWinner = (squares) => {
     [0,4,8],
     [2,4,6]
   ];
+
+  for (let i = 0; i < winningLines.length; i++) {
+    const [a, b, c] = winningLines[i];
+
+    if (squares[a] && squares[a] === squares[b] && squares[b] === squares[c]) {
+      return squares[a];
+    }
+  }
+
+  return null;
 }
