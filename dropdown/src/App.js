@@ -8,7 +8,7 @@ const App = () => {
     fetch('https://jsonplaceholder.typicode.com/todos')
       .then(response => response.json())
       .then(data => setTodos(data))
-  }, [])
+  }, []);
 
   const markComplete = (i) => setTodos(todos.map((todo, j) => j === i ? { ...todo, completed: !todo.completed } : todo));
 
