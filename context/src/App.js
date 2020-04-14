@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { Index } from './pages';
@@ -6,7 +6,10 @@ import { About } from './pages/about';
 import { UserContext } from './userContext';
 
 function AppRouter() {
-  const [value, setValue] = useState('Hello World');
+  const [user, setUser] = useState(null);
+
+  const value = useMemo(() => ({user, setUser}), [user, setUser]);
+
   return (
     <Router>
       <div>
@@ -20,7 +23,7 @@ function AppRouter() {
             </li>
           </ul>
         </nav>
-        <UserContext.Provider value={{ value, setValue }}>
+        <UserContext.Provider value={value}>
           <Route path="/" exact component={Index} />
           <Route path="/about" component={About} />
         </UserContext.Provider>

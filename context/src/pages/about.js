@@ -3,11 +3,11 @@ import React, { useContext } from 'react';
 import { UserContext } from '../userContext';
 
 export function About() {
-    const { value, setValue } = useContext(UserContext);
+    const { user } = useContext(UserContext);
 
     return (
         <div>
-            <div>{value}</div>
+            <div>{JSON.stringify(user)}</div>
             <h2>About</h2>
         </div>
     );
