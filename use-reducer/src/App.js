@@ -1,5 +1,7 @@
 import React, { useReducer } from 'react';
 
+import Todos from './todosReducer';
+
 const reducer = (state, action) => {
   switch(action.type) {
     case 'INCREMENT':
@@ -19,6 +21,8 @@ function App() {
       <div>count: {count}</div>
       <button onClick={() => dispatch({ type: 'INCREMENT' })}>Increment</button>
       <button onClick={() => dispatch({ type: 'DECREMENT' })}>Decrement</button>
+
+      <Todos />
     </div>
   );
 }
