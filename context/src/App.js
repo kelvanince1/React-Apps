@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 import { Index } from './pages';
 import { About } from './pages/about';
+import { UserContext } from './userContext';
 
 function AppRouter() {
   return (
@@ -18,9 +19,10 @@ function AppRouter() {
             </li>
           </ul>
         </nav>
-
-        <Route path="/" exact component={Index} />
-        <Route path="/about" component={About} />
+        <UserContext.Provider value="Hello World">
+          <Route path="/" exact component={Index} />
+          <Route path="/about" component={About} />
+        </UserContext.Provider>
       </div>
     </Router>
   );
