@@ -10,15 +10,23 @@ export function Index() {
         <div>
             <div>{JSON.stringify(user)}</div>
             <h2>Home</h2>
-
-            <button
-                onClick={async () => {
-                    const user = await login();
-                    setUser(user);
-                }}
-            >
-                Login
-            </button>
+            {
+                user ?
+                <button
+                    onClick={() => setUser(null)}
+                >
+                    Logout
+                </button>
+                :
+                <button
+                    onClick={async () => {
+                        const user = await login();
+                        setUser(user);
+                    }}
+                >
+                    Login
+                </button>
+            }
         </div>
     );
 };
