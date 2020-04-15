@@ -13,7 +13,7 @@ export const useFetch = url => {
     useEffect(() => {
         setState(state => ({ data: state.data, loading: true }));
         fetch(url)
-            .then(x => x.title)
+            .then(x => x.json())
             .then(y => {
                 if (isCurrent.current) {
                     setState({ data: y, loading: false });
