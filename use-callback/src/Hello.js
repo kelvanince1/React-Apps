@@ -1,5 +1,9 @@
 import React from 'react';
 
-export const Hello = ({increment}) => {
+import { useCountRenders } from './useCountRenders';
+
+export const Hello = React.memo(({ increment }) => {
+    useCountRenders();
+
     return <button onClick={increment}>Hello</button>;
-};
+});

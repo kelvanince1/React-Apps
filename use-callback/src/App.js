@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import { Hello } from './Hello';
 
 const App = () => {
   const [count, setCount] = useState(0);
 
+  const increment = useCallback(() => {
+    setCount(c => c + 1)
+  }, [setCount]);
+
   return (
     <div>
-      <Hello increment={() => setCount(count + 1)} />
+      <Hello increment={increment} />
       <div>Count: {count}</div>
     </div>
   );
