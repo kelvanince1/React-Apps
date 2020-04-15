@@ -1,33 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 
 import { useFetch } from './useFetch';
+
+const computeLongestWord = (arr) => {
+  if (!arr) {
+    return [];
+  }
+
+  console.log('Computing');
+
+  let longest = '';
+
+  arr.forEach(item => item.title.split(' ').forEach(word => {
+    if (word.length > longest.length) {
+      longest = word;
+    }
+  }));
+
+  return longest;
+}
 
 const App = () => {
   const [count, setCount] = useState(0);
 
-  const { data } = useFetch('https://jsonplaceholder.typicode.com/todos');
+  const { data } = useFetch('https://jsonplaceholder.typicode.com/todos'); 
 
-  const computeLongestWord = () => {
-    if (!data) {
-      return [];
-    }
-
-    let longest = '';
-
-    data.forEach(item => item.title.split(' ').forEach(word => {
-      if (word.length > longest.length) {
-        longest = word;
-      }
-    }));
-
-    return longest;
-  }
+  const longestWord = useMemo(() => computeLongestWord(data), [data, computeLongestWord]);
 
   return (
     <div>
       <div>Count: {count}</div>
       <button onClick={() => setCount(count + 1)}>Increment</button>
-      <div>{computeLongestWord()}</div>
+      <div>{longestWord}</div>
     </div>
   );
 }
