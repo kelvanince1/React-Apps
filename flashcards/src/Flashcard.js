@@ -13,7 +13,7 @@ const Flashcard = ({ flashcard }) => {
                 <div className="flashcard-options">
                     {
                         flashcard.options.map(option => (
-                            <div className="flashcard-option">
+                            <div className="flashcard-option" key={option}>
                                 {option}
                             </div>
                         ))
@@ -23,12 +23,6 @@ const Flashcard = ({ flashcard }) => {
             <div className="back">
                 {flashcard.answer}
             </div>
-            {
-                flip ?
-                    flashcard.answer
-                :
-                    flashcard.question
-            }
         </div>
     );
 }
