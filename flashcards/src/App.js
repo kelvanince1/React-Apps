@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import './app.css';
 import List from './List';
 
 function App() {
   const [flashcards, setFlashcards] = useState(samples);
-  
+  const [categories, setCategories] = useState([]);
+ 
+  const categoryEle = useRef();
+  const amountEle = useRef();
+
+  useEffect(() => {
+    fetch('https://opentdb.com/api_category.php')
+      .then(res => res.json())
+      .then(data => {
+        setCategories(data.trivia_categories)
+      })
+  }, []);
+
   useEffect(() => {
     fetch('https://opentdb.com/api.php?amount=10')
       .then(res => res.json())
@@ -33,13 +45,37 @@ function App() {
 
      return text.value;
   }
+  
+  const handleSubmit = e => {
+    e.prventDefault();
+  }
 
   return (
-    <div className="container">
-      <List
-        flashcards={flashcards}
-      />
-    </div>
+    <>
+      <form className="header" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="category">Cateogy</label>
+          <select id="category" ref={categoryEle}>
+            {
+              categories.map(category => (
+                <option value={category.id} key={category.id}>
+                  {category.name}
+                </option>
+              ))
+            }
+          </select>
+        </div>
+      </form>
+      <div className="form-group">
+        <label htmlFor="amount">Number of Questions</label>
+        <input type="number" id="amount" min="1" step="1" defaultValue={10} ref={amountEle} />
+      </div>
+      <div className="container">
+        <List
+          flashcards={flashcards}
+        />
+      </div>
+    </>
   );
 }
 
