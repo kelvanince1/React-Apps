@@ -7,9 +7,9 @@ const actions = {
 
 function reducer(state, action) {
   switch(action.type) {
-    case 'increment':
+    case actions.INCREMENT:
       return { count: state.count + 1 }
-    case 'decrement':
+    case actions.DECEREMENT:
       return { count: state.count - 1 }
     default:
       return state;
@@ -21,11 +21,11 @@ function App() {
   // const [count, setCount] = useState(0);
 
   function increment() {
-    dispatch({ type: 'increment' });
+    dispatch({ type: actions.INCREMENT });
   }
 
   function decrement() {
-    dispatch({ type: 'decrement' });
+    dispatch({ type: actions.DECEREMENT });
   }
 
   return (
