@@ -5,6 +5,8 @@ import Header from './components/Header';
 import Auth from './components/Auth';
 import AuthContext from './auth-context';
 
+import TodoList from './components/TodoList';
+
 const app = props => {
   const [page, setPage] = useState('auth');
   const [authStatus, setAuthStatus] = useState(false);
@@ -27,6 +29,8 @@ const app = props => {
         <hr />
         {page === 'auth' ? <Auth /> : <Todo />}
       </AuthContext.Provider>
+
+      <TodoList />
     </div>
   )
 }

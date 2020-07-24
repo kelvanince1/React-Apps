@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const todo = props => {
   const [todoName, setTodoName] = useState('');
-  // const [todoList, setTodoList] = useState([]);
+  //const [todoList, setTodoList] = useState([]);
   const [submittedTodo, setSubmittedTodo] = useState(null)
   //   const [todoState, setTodoState] = useState({ userInput: '', todoList: [] });
 
@@ -36,7 +36,7 @@ const todo = props => {
 
   useEffect(() => {
     if (submittedTodo) {
-      dispatch(type: 'ADD', payload: submittedTodo);
+      dispatch({type: 'ADD', payload: submittedTodo});
     }
   }, [submittedTodo]);
 
@@ -53,7 +53,7 @@ const todo = props => {
     //   userInput: todoState.userInput,
     //   todoList: todoState.todoList.concat(todoState.userInput)
     // });
-    setTodoList(todoList.concat(todoName));
+    dispatch(todoList.concat(todoName));
     axios
       .post('test', { name: todoName })
       .then(res => {
