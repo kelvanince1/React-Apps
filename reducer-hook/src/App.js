@@ -1,4 +1,6 @@
-import React, { useState, useReducer } from 'react';
+import React, { useReducer } from 'react';
+
+import Todo from './Todo';
 
 const actions = {
   INCREMENT: 'increment',
@@ -33,6 +35,8 @@ function App() {
       <button onClick={decrement}>-</button>
       <span>{state.count}</span>
       <button onClick={increment}>+</button>
+
+      <Todo />
     </>
   );
 }
