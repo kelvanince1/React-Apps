@@ -20,7 +20,6 @@ function reducer(state, action) {
 
 function App() {
   const [state, dispatch] = useReducer(reducer, { count: 0 });
-  // const [count, setCount] = useState(0);
 
   function increment() {
     dispatch({ type: actions.INCREMENT });
