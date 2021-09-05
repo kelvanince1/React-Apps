@@ -1,8 +1,7 @@
 import { useState } from './Clone';
 
 const Component = ({ propCount }) => {
-    const [count, setCount] = useState(0);
-    const count = 0;
+    const [count, setCount] = useState(30);
     const propCountDoubled = 0;
 
     return `
